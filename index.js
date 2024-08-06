@@ -101,7 +101,7 @@ app.post('/login', async (req, res) => {
       }
       success = true;
       console.log(user.id);
-      const token = jwt.sign(data, process.env.SEC');
+      const token = jwt.sign(data,process.env.R);
       res.json({ success, token });
     }
     else {
@@ -139,7 +139,7 @@ app.post('/signup', async (req, res) => {
     }
   }
 
-  const token = jwt.sign(data, process.env.SEC);
+  const token = jwt.sign(data, process.env.R);
   success = true;
   res.json({ success, token })
 })
@@ -167,7 +167,7 @@ const fetchuser = async (req, res, next) => {
     res.status(401).send({ errors: "Please authenticate using a valid token" });
   }
   try {
-    const data = jwt.verify(token, process.env.SEC);
+    const data = jwt.verify(token, process.env.R);
     req.user = data.user;
     next();
   } catch (error) {
